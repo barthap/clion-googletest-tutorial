@@ -1,4 +1,13 @@
-# Struktura projektu CLion
+# Konfiguracja CLion i Google Tests
+
+Spis treści:
+1. [Struktura projektu CLion](#struktura-projektu-clion)
+2. [Konfiguracja istniejącego projektu](#konfiguracja-obecnego-projektu-w-clion)
+3. [Konfiguracja projektu od zera](#konfiguracja-nowego-projektu-clion-od-zera)
+
+> Wszystko, co zostało tutaj opisane zostało przetestowane na MacOS X. Na Windowsie teoretycznie też powinno działać (MinGW jest automatycznie instalowane wraz z CLion'em), w razie problemów proszę o kontakt. 
+
+## Struktura projektu CLion
 
 Katalog główny projektu `matlab-2_clion` zawiera następujące pliki i podkatalogi:
 
@@ -11,9 +20,9 @@ Katalog główny projektu `matlab-2_clion` zawiera następujące pliki i podkata
 - `CMakeLists.txt` - plik konfiguracyjny cmake, jest to tak jakby główny plik projektu
 - `matlab-2.cpp` - plik zawierający funkcję `main()` nie uruchamianą w testach, tylko tą "zwykłą"
 
-> Wszystko tutaj opisane zostało przetestowane na MacOS X. Na Windowsie teoretycznie też powinno (MinGW jest automatycznie instalowane wraz z CLion'em), w razie problemów proszę o kontakt. 
-
 ## Konfiguracja obecnego projektu w CLion
+
+Dotyczy załączonego tutaj projektu `matlab-2_clion`.
 
 1. Pobierz repozytorium Google Test stąd: https://github.com/google/googletest i rozpakuj w katalogu projektu tak, aby katalog `googletest-master` był wewnątrz katalogu głównego projektu
 2. Otwórz projekt w CLion Open Project -> matlab-2_clion
