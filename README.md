@@ -3,13 +3,15 @@
 Katalog główny projektu `matlab-2_clion` zawiera następujące pliki i podkatalogi:
 
 - `/.idea` - pliki konfiguracyjne stworzone przez CLion
-- `/cmake-build-debug` - pliki utworzone przez cmake, odpowiednik katalogów `bin` i `obj`. Pliki te generowane są automatycznie podczas kompilacji/linkowania i nie powinno się ich przesyłać
-- `/googletest-master` - sklonowane repozytorium Google Test (ze względu na rozmiar, zawartość nie została dołączona, należy ją pobrać automatycznie)
+- `/cmake-build-debug` - pliki utworzone przez cmake, odpowiednik katalogów `bin` i `obj`. Pliki te generowane są automatycznie podczas kompilacji/linkowania i nie powinno się ich przesyłać np. do oceny
+- `/googletest-master` - sklonowane repozytorium Google Test (ze względu na rozmiar, zawartość nie została dołączona, należy ją pobrać własnoręcznie - patrz niżej)
 - `/include` - pliki nagłówkowe `.h` i `.hpp` projektu
 - `/src` - pliki źródłowe projektu `.cpp`
 - `/test` - pliki z testami jednostkowymi projektu
 - `CMakeLists.txt` - plik konfiguracyjny cmake, jest to tak jakby główny plik projektu
-- `matlab-2.cpp` - plik zawierający funkcję `main()` nie uruchamianą w testach
+- `matlab-2.cpp` - plik zawierający funkcję `main()` nie uruchamianą w testach, tylko tą "zwykłą"
+
+> Wszystko tutaj opisane zostało przetestowane na MacOS X. Na Windowsie teoretycznie też powinno (MinGW jest automatycznie instalowane wraz z CLion'em), w razie problemów proszę o kontakt. 
 
 ## Konfiguracja obecnego projektu w CLion
 
@@ -31,7 +33,7 @@ Katalog główny projektu `matlab-2_clion` zawiera następujące pliki i podkata
 4. Utwórz w głównym katalogu projektu 3 katalogi: `src`, `include`, `test`. Można to zrobić za pomocą IDE: w oknie Project po lewej stronie PPM -> New -> Directory
 5. Pobierz Google Test (patrz punkt 1. wyżej), rozpakuj i skopiuj katalog `googletest-master` do katalogu głównego projektu
 6. Utwórz w katalogu `test` nowy plik o nazwie `main_test.cpp` (katalog test: PPM -> New -> File). Będzie on zawierał funkcję `main()` do testów:
-```
+```cpp
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {
@@ -70,7 +72,8 @@ set(TEST_SOURCES
 add_subdirectory(googletest-master)
 link_libraries(gmock)
 
-#Tworzy konfigurację o nazwie konfig_run (nazwę możemy dowolnie zmienić do której dołącza plik main.cpp z funkcją main()
+#Tworzy konfigurację o nazwie konfig_run (nazwę możemy dowolnie zmienić)
+# do której dołącza plik main.cpp z funkcją main()
 add_executable(konfig_run ${SOURCE_FILES} main.cpp)
 
 #Tworzy konfigurację o nazwie konfig_test służącą do uruchamiania testów jednostkowych
@@ -99,11 +102,11 @@ W przypadku tworzenia plików .cpp w inny sposób, należy ręcznie dodać je w 
 Czasami może pojawić się komunikat IDE o tym, że plik nie jest przypisany do żadnego projektu / jest nieużywany. Klikamy wtedy PPM na folder 'include', Mark a
 Directory as -> Project Sources and Headers
 18. W pliku nagłówkowym `include/kalkulator.hpp` dodajemy kod:
-```
+```cpp
 int dodaj(int a, int b);
 ```
 A w pliku `kalkulator.cpp` definicję tej funkcji:
-```
+```cpp
 #include "kalkulator.hpp"
 
 int dodaj(int a, int b) {
@@ -112,7 +115,7 @@ int dodaj(int a, int b) {
 ```
 18. Tworzymy plik `test_kalkulatora.cpp` w katalogu 'test'. Dodajemy go do `TEST_SOURCES` w CMake (albo ręcznie, albo jak wyżej przez okienko New C++ source).
 Dodajemy test naszej funkcji dodawania:
-```
+```cpp
 #include "gtest/gtest.h"
 #include "kalkulator.hpp"
 
